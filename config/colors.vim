@@ -1,8 +1,8 @@
 " colorscheme config
 set t_Co=256
 set cursorline
-colorscheme onehalflight
-let g:airline_theme='onehalfdark'
+colorscheme gruvbox
+" let g:airline_theme='onehalfdark'
 
 " True Colors
 if exists('+termguicolors')
@@ -13,8 +13,8 @@ endif
 
 
 " old colorscheme config
-" let g:airline_theme='solarized'
-" let g:airline_solarized_bg='light'
-" let g:airline#extensions#tabline#enabled = 1
+let g:airline_theme='solarized'
+let g:airline_solarized_bg='light'
+let g:airline#extensions#tabline#enabled = 1
 hi! Normal ctermbg=NONE guibg=NONE
 
