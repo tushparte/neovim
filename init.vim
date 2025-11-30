@@ -74,8 +74,20 @@ cmp.setup({
 })
 
 -- Setup LSP for C
-require('lspconfig').clangd.setup({
-  capabilities = capabilities
+vim.api.nvim_create_autocmd('FileType', {
+  pattern = {'c', 'cpp', 'h', 'hpp'},
+  callback = function()
+    vim.lsp.start({
+      name = 'clangd',
+      cmd = {'clangd'},
+      capabilities = capabilities,
+      root_dir = vim.fs.dirname(vim.fs.find({'compile_commands.json', '.git'}, { upward = true })[1]),
+      init_options = {
+        clangdFileStatus = true,
+        fallbackFlags = { "-std=c++17", "-Wall", "-Wextra" }  -- Add C++ standard here
+      }
+    })
+  end,
 })
 
 -- Optional: Setup LuaSnip
