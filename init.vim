@@ -80,5 +80,36 @@ require('lspconfig').clangd.setup({
 
 -- Optional: Setup LuaSnip
 require('luasnip.loaders.from_vscode').lazy_load()
+
+require('lspconfig').gopls.setup({
+  capabilities = capabilities,
+  settings = {
+    gopls = {
+      analyses = {
+        unusedparams = true,
+      },
+      staticcheck = true,
+      gofumpt = true,
+      hints = {
+        assignVariableTypes = true,
+        compositeLiteralFields = true,
+        compositeLiteralTypes = true,
+        constantValues = true,
+        functionTypeParameters = true,
+        parameterNames = true,
+        rangeVariableTypes = true,
+      },
+    },
+  },
+  on_attach = function(client, bufnr)
+    -- Enable format on save
+    vim.api.nvim_create_autocmd("BufWritePre", {
+      buffer = bufnr,
+      callback = function()
+        vim.lsp.buf.format({ async = false })
+      end
+    })
+  end
+})
 EOF
 
