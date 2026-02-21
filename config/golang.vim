@@ -12,7 +12,7 @@ let g:go_doc_popup_window = 1       " Show docs in popup window
 let g:go_bin_path="/usr/local/go/bin/"
 let g:go_def_mode = 'gopls'         " Use gopls for definitions
 let g:go_info_mode = 'gopls'        " Use gopls for info
-let g:go_code_completion_enabled = 1 " Enable code completion
+let g:go_code_completion_enabled = 0 " Enable code completion
 
 " Go syntax highlighting
 let g:go_highlight_fields = 1
@@ -43,9 +43,9 @@ autocmd FileType go nmap <leader>t  <Plug>(go-test)
 " End Go config
 
 " Use Tab to trigger and navigate completion
-inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-inoremap <expr> <CR>    pumvisible() ? "\<C-y>" : "\<CR>"
+" inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
+" inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+" inoremap <expr> <CR>    pumvisible() ? "\<C-y>" : "\<CR>"
 
 
 " General mappings

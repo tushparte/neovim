@@ -73,6 +73,34 @@ cmp.setup({
   })
 })
 
+-- Setup LSP for Go
+vim.api.nvim_create_autocmd('FileType', {
+  pattern = 'go',
+  callback = function()
+    vim.lsp.start({
+      name = 'gopls',
+      cmd = {'gopls'},
+      capabilities = capabilities,
+      root_dir = vim.fs.dirname(vim.fs.find({'go.mod', '.git'}, { upward = true })[1]),
+      settings = {
+        gopls = {
+          analyses = {
+            unusedparams = true,
+            nonewvars = true,
+            shadow = true,
+            undeclaredname = true,
+          },
+          staticcheck = true,
+          gofumpt = true,  -- If you want to use gofumpt
+          usePlaceholders = true,
+          completeUnimported = true,
+        }
+      }
+    })
+  end,
+})
+
+
 -- Setup LSP for C
 vim.api.nvim_create_autocmd('FileType', {
   pattern = {'c', 'cpp', 'h', 'hpp'},
