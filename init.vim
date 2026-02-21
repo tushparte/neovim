@@ -73,6 +73,7 @@ cmp.setup({
   })
 })
 
+
 -- Setup LSP for Go
 vim.api.nvim_create_autocmd('FileType', {
   pattern = 'go',
@@ -117,6 +118,9 @@ vim.api.nvim_create_autocmd('FileType', {
     })
   end,
 })
+
+vim.keymap.set('n', '<leader>d', vim.diagnostic.open_float, { desc = "Show diagnostics" })
+vim.keymap.set({'n', 'x'}, '<leader>ca', vim.lsp.buf.code_action, { desc = "Code actions" })
 
 -- Optional: Setup LuaSnip
 require('luasnip.loaders.from_vscode').lazy_load()
