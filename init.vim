@@ -11,6 +11,7 @@ Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 Plug 'nvim-treesitter/nvim-treesitter', { 'branch': 'main', 'do': ':TSUpdate' }
+Plug 'mfussenegger/nvim-jdtls'
 
 
 " Auto-completion
@@ -137,6 +138,7 @@ vim.api.nvim_create_autocmd('FileType', {
 
 vim.keymap.set('n', '<leader>d', vim.diagnostic.open_float, { desc = "Show diagnostics" })
 vim.keymap.set({'n', 'x'}, '<leader>ca', vim.lsp.buf.code_action, { desc = "Code actions" })
+
 
 -- Optional: Setup LuaSnip
 require('luasnip.loaders.from_vscode').lazy_load()
