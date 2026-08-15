@@ -53,18 +53,14 @@ nmap <silent> <leader>gi :GoImports<CR>
 nmap <silent> <leader>gf :GoFmt<CR>
 nmap <silent> <leader>gt :GoModTidy<CR>
 
-" Navigation
-nmap <silent> gd <Plug>(go-def)
+" Navigation (gd/gD/gr/gi/K handled by native LSP in init.vim; keep only
+" vim-go extras that don't overlap)
 nmap <silent> gy <Plug>(go-def-type)
-nmap <silent> gi <Plug>(go-implements)
-nmap <silent> gr <Plug>(go-referrers)
 nmap <silent> <leader>ds <Plug>(go-def-split)
 nmap <silent> <leader>dv <Plug>(go-def-vertical)
 nmap <silent> <leader>dt <Plug>(go-def-tab)
 
 " Documentation
-nmap <silent> K <Plug>(go-doc)
-nmap <silent> <leader>gd <Plug>(go-doc)
 nmap <silent> <leader>gv <Plug>(go-doc-vertical)
 nmap <silent> <leader>gb <Plug>(go-doc-browser)
 
@@ -90,7 +86,3 @@ nmap <silent> <leader>fs :GoFillStruct<CR>
 nmap <silent> <leader>im :GoImpl<CR>
 nmap <silent> <leader>at :GoAddTags<CR>
 nmap <silent> <leader>rt :GoRemoveTags<CR>
-
-" LSP mappings (when using gopls)
-nmap <silent> <leader>rn <Plug>(go-rename)
-nmap <silent> <leader>ca <Plug>(go-code-action)
