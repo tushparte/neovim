@@ -1,16 +1,16 @@
 call plug#begin('~/.vim/plugged')
 
-Plug 'jremmen/vim-ripgrep'
 Plug 'mbbill/undotree'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'scrooloose/nerdtree'
-Plug 'flazz/vim-colorschemes'
+Plug 'ellisonleao/gruvbox.nvim'
 Plug 'honza/vim-snippets'
 Plug 'sonph/onehalf', { 'rtp': 'vim' }
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'junegunn/fzf.vim'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim'
+Plug 'nvim-treesitter/nvim-treesitter', { 'branch': 'main', 'do': ':TSUpdate' }
 
 
 " Auto-completion
@@ -27,10 +27,12 @@ Plug 'rafamadriz/friendly-snippets'
 
 call plug#end()
 
+let mapleader = " "
+
 source $HOME/.config/nvim/config/sets.vim
 source $HOME/.config/nvim/config/colors.vim
 source $HOME/.config/nvim/config/golang.vim
-source $HOME/.config/nvim/config/fzf.vim
+source $HOME/.config/nvim/config/telescope.vim
 source $HOME/.config/nvim/config/remaps.vim
 
 " LSP Keymaps
@@ -41,6 +43,21 @@ nnoremap <silent> gi <cmd>lua vim.lsp.buf.implementation()<CR>
 nnoremap <silent> K <cmd>lua vim.lsp.buf.hover()<CR>
 nnoremap <silent> <leader>rn <cmd>lua vim.lsp.buf.rename()<CR>
 nnoremap <silent> <leader>ca <cmd>lua vim.lsp.buf.code_action()<CR>
+
+" Treesitter
+lua << EOF
+local ts_parsers = { 'go', 'gomod', 'gowork', 'gosum', 'c', 'lua', 'vim', 'vimdoc', 'bash', 'markdown' }
+require('nvim-treesitter').install(ts_parsers)
+
+vim.api.nvim_create_autocmd('FileType', {
+  pattern = { 'go', 'gomod', 'gowork', 'gosum', 'c', 'lua', 'vim', 'help', 'bash', 'sh', 'markdown' },
+  callback = function()
+    vim.treesitter.start()
+    vim.wo.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
+    vim.bo.indentexpr = 'v:lua.vim.treesitter.indentexpr()'
+  end,
+})
+EOF
 
 " Enable LSP and completion
 lua << EOF
