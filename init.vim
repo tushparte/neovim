@@ -11,6 +11,8 @@ Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 Plug 'nvim-treesitter/nvim-treesitter', { 'branch': 'main', 'do': ':TSUpdate' }
+Plug 'windwp/nvim-autopairs'
+Plug 'numToStr/Comment.nvim'
 
 
 " Auto-completion
@@ -96,6 +98,14 @@ require('lspconfig').clangd.setup({
 
 -- Optional: Setup LuaSnip
 require('luasnip.loaders.from_vscode').lazy_load()
+
+-- Autopairs
+require('nvim-autopairs').setup({})
+local cmp_autopairs = require('nvim-autopairs.completion.cmp')
+cmp.event:on('confirm_done', cmp_autopairs.on_confirm_done())
+
+-- Comment toggling
+require('Comment').setup({})
 
 require('lspconfig').gopls.setup({
   capabilities = capabilities,
