@@ -13,6 +13,7 @@ Plug 'nvim-telescope/telescope.nvim'
 Plug 'nvim-treesitter/nvim-treesitter', { 'branch': 'main', 'do': ':TSUpdate' }
 Plug 'windwp/nvim-autopairs'
 Plug 'numToStr/Comment.nvim'
+Plug 'nvim-orgmode/orgmode'
 
 
 " Auto-completion
@@ -36,6 +37,7 @@ source $HOME/.config/nvim/config/colors.vim
 source $HOME/.config/nvim/config/golang.vim
 source $HOME/.config/nvim/config/telescope.vim
 source $HOME/.config/nvim/config/remaps.vim
+source $HOME/.config/nvim/config/orgmode.vim
 
 " LSP Keymaps
 nnoremap <silent> gd <cmd>lua vim.lsp.buf.definition()<CR>
